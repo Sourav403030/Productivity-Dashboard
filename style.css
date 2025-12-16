@@ -74,6 +74,57 @@ nav button{
 }
 
 
+/* Pomodoro Widget */
+
+.pomodoro{
+    padding: var(--padding-md);
+    margin: var(--padding-xl);
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: var(--border-radius-lg);
+}
+
+.pomo-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--gutter-lg);
+    gap: var(--gutter-md);
+}
+
+.pomo-top button{
+    padding: var(--padding-sm) ;
+    font-family: normal;
+    font-size: var(--font-sm);
+    color: var(--quadrary);
+    background-color: var(--secondary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+}
+
+.pomo-center h1{
+    font-family: bold;
+    font-size: var(--font-5xl);
+    color: var(--ternary);
+    margin-bottom: var(--gutter-lg);
+}
+
+.pomo-bottom button{
+    padding: var(--padding-sm) var(--padding-md);
+    font-family: normal;
+    font-size: var(--font-sm);
+    color: var(--quadrary);
+    background-color: var(--secondary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    margin: var(--gutter-sm);
+}
+
+
 /* Responsive Layout */
 
 @media (min-width: 400px) {
@@ -91,6 +142,20 @@ nav button{
         padding: var(--padding-sm);
         width: 40%;
     }
+
+    .pomo-top button{
+        font-size: var(--font-md);
+        padding: var(--padding-sm);
+    }
+
+    .pomo-center h1{
+        font-size: var(--font-6xl);
+    }
+
+    .pomo-bottom button{
+        font-size: var(--font-md);
+        padding: var(--padding-sm) var(--padding-md);
+}
 }
 
 
@@ -119,6 +184,10 @@ nav button{
         font-size: var(--font-md);
         padding: var(--padding-md) var(--padding-sm);
     }
+
+    .pomodoro{
+        width: 40%;
+    }
 }
 
 
@@ -142,6 +211,11 @@ nav button{
         width: 10%;
         font-size: var(--font-md);
     }
+
+    .pomodoro{
+        width: 30%;
+    }
+
 }
 
 
@@ -166,5 +240,19 @@ nav button{
     nav button{
         width: 12%;
         font-size: var(--font-xl);
+    }
+
+    .pomo-top button{
+        font-size: var(--font-lg);
+        padding: var(--padding-md);
+    }
+
+    .pomo-center h1{
+        font-size: var(--font-8xl);
+    }
+
+    .pomo-bottom button{
+        font-size: var(--font-xl);
+        padding: var(--padding-md) var(--padding-xl);
     }
 }
