@@ -1,0 +1,43 @@
+:root{
+
+    /* colors */
+    --primary: #2D2424;
+    --secondary: #5C3D2E;
+    --ternary: #B85C38;
+    --quadrary: #E0C097;
+
+    /* fonts */
+    --font-sm: 0.875rem;
+    --font-md: 1rem;
+    --font-lg: 1.25rem;
+    --font-xl: 2rem;
+    --font-2xl: 3rem;
+    --font-3xl: 4rem;
+    --font-4xl: 5rem;
+    --font-5xl: 6rem;
+    --font-6xl: 7rem;
+    --font-7xl: 8rem;
+
+    /* padding */
+    --padding-sm: 0.5rem;
+    --padding-md: 1rem;
+    --padding-lg: 1.5rem;
+    --padding-xl: 2rem;
+    --padding-2xl: 3rem;
+
+    /* border-radius */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+    --border-radius-xl: 1.5rem;
+    --border-radius-2xl: 2rem;
+
+    /* gutter */
+    --gutter-sm: 0.5rem;
+    --gutter-md: 1rem;
+    --gutter-lg: 1.5rem;
+    --gutter-xl: 2rem;
+    --gutter-2xl: 3rem;
+
+
+}
