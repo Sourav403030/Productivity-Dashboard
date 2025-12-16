@@ -132,6 +132,9 @@ nav button{
     margin: var(--padding-xl);
     border: 1px solid var(--secondary);
     border-radius: var(--border-radius-lg);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* .small-widgets{
@@ -145,7 +148,7 @@ nav button{
 
 .motivation h1{
     font-family: light;
-    font-size: var(--font-xl);
+    font-size: var(--font-lg);
     color: var(--quadrary);
     margin: var(--gutter-md) 0;
 }
@@ -160,6 +163,52 @@ nav button{
 .motivation .double-quote-reverse{
     display: flex;
     justify-content: flex-end;
+}
+
+/* Todo List widget */
+
+.todo{
+    margin-top: var(--padding-xl);
+    padding: var(--padding-md);
+    margin: var(--padding-xl);
+    border: 1px solid var(--secondary);
+    border-radius: var(--border-radius-lg);
+}
+
+.todo-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: bold;
+    font-size: var(--font-md);
+    padding: 0 var(--padding-md);
+    color: var(--ternary);
+    margin-bottom: var(--gutter-md);
+}
+
+.todo-task{
+    display: flex;
+    justify-content: space-between;
+    padding: var(--padding-sm) var(--padding-md);
+    align-items: center;
+    gap: var(--gutter-md);
+    margin-bottom: var(--gutter-sm);
+}
+
+.todo-task h2{
+    font-family: normal;
+    font-size: var(--font-lg);
+    color: var(--quadrary);
+    text-align: left;
+    width: 70%;
+}
+
+
+.circle{
+    height: 20px;
+    width: 20px ;
+    border: 2px solid var(--secondary);
+    border-radius: 50%;
 }
 
 
@@ -196,12 +245,18 @@ nav button{
         padding: var(--padding-sm) var(--padding-md);
     }
 
+    .motivation{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     .motivation i{
         font-size: var(--font-2xl);
     }
 
     .motivation h1{
-        font-size: var(--font-2xl);
+        font-size: var(--font-xl);
     }
 
     .motivation h3{
@@ -237,16 +292,38 @@ nav button{
     }
 
     .pomodoro{
-        width: 50%;
+        width: 60%;
     }
 
     .small-widgets{
         display: flex;
-        justify-content: space-between;
+    }
+
+    .motivation{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 
     .motivation i{
         font-size: var(--font-3xl);
+    }
+
+    .large-widgets{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .todo{
+        width: 40%;
+    }
+
+    .todo-heading{
+        font-size: var(--font-xl);
+    }
+
+    .todo h2{
+        font-size: var(--font-xl);
     }
 }
 
@@ -273,7 +350,7 @@ nav button{
     }
 
     .pomodoro{
-        width: 30%;
+        width: 100%;
     }
     
     .small-widgets{
@@ -282,14 +359,52 @@ nav button{
 
     .motivation{
         overflow: scroll;
-        height: 16rem;
-        width: 30%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 25rem;
+        width: 100%;
         margin-top: -1rem;
+    }
+
+    .motivation h1{
+        font-size: var(--font-xl);
     }
 
 
     .all-contents{
         display: flex;
+        gap: var(--gutter-xl);
+        /* background-color: green; */
+    }
+
+    .small-widgets{
+        width: 30%;
+    }
+
+    .large-widgets{
+        /* background-color: black; */
+        width: 70%;
+    }
+
+    .todo{
+        height: 43.5rem;
+        overflow: scroll;
+        width: 40%;
+
+    }
+
+    .todo-heading h1{
+        font-size: var(--font-2xl);
+    }
+
+    .todo-heading h2{
+        font-size: var(--font-2xl);
+    }
+
+    .todo-task h2{
+        font-size: var(--font-xl);
+        width: 70%;
     }
 
 
@@ -320,7 +435,7 @@ nav button{
     }
 
     .pomodoro{
-        width: 30%;
+        width: 100%;
     }
 
     .pomo-top button{
@@ -338,7 +453,7 @@ nav button{
     }
 
     .motivation{
-        width: 30%;
+        width: 100%;
         height: 28rem;
     }
 
@@ -352,5 +467,26 @@ nav button{
 
     .motivation h3{
         font-size: var(--font-xl);
+    }
+
+    .todo{
+        height: 52rem;
+    }
+
+    .todo-heading h1{
+        font-size: var(--font-3xl);
+    }
+
+    .todo-heading h2{
+        font-size: var(--font-3xl);
+    }
+
+    .todo-task h2{
+        font-size: var(--font-2xl);
+    }
+
+    .circle{
+        height: 30px;
+        width: 30px ;
     }
 }
