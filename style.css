@@ -211,6 +211,91 @@ nav button{
     border-radius: 50%;
 }
 
+.weather{
+    margin-top: var(--padding-xl);
+    padding: var(--padding-md);
+    margin: var(--padding-xl);
+    border: 1px solid var(--secondary);
+    border-radius: var(--border-radius-lg);
+}
+
+.weather-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-info h2{
+    font-family: bold;
+    font-size: var(--font-xl);
+    color: var(--ternary);
+    margin-bottom: var(--gutter-sm);
+}
+
+.weather-info h1{
+    font-family: bold;
+    font-size: var(--font-4xl);
+    color: var(--quadrary);
+    margin-bottom: var(--gutter-sm);
+}
+
+.weather-info h3{
+    font-family: normal;
+    font-size: var(--font-md);
+    color: var(--ternary);
+    margin-bottom: var(--gutter-md);
+}
+
+.weather-info h4{
+    font-family: normal;
+    font-size: var(--font-lg);
+    color: var(--ternary);
+    margin-bottom: var(--gutter-sm);
+}
+
+.temp-high-low{
+    display: flex;
+    gap: var(--gutter-md);
+}
+
+.temp-high-low h4 span{
+    font-family: normal;
+    font-size: var(--font-lg);
+    color: var(--quadrary);
+}
+
+.week-forecast{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gutter-md);
+    margin-top: var(--padding-md);
+    text-align: center;
+}
+
+.day-forecast{
+    display: flex;
+    justify-content: space-around;
+    margin-top: var(--padding-md);
+}
+
+.day-forecast h3{
+    font-family: normal;
+    font-size: var(--font-md);
+    color: var(--ternary);
+}
+
+.day-forecast i{
+    color: var(--secondary);
+    font-size: var(--font-lg);
+}
+
+.day-forecast h4{
+    font-family: normal;
+    font-size: var(--font-md);
+    color: var(--quadrary);
+}
+
 
 
 /* Responsive Layout */
@@ -260,6 +345,34 @@ nav button{
     }
 
     .motivation h3{
+        font-size: var(--font-lg);
+    }
+
+    .weather-info h2{
+        font-size: var(--font-2xl);
+    }
+
+    .weather-info h1{
+        font-size: var(--font-5xl);
+    }
+
+    .weather-info h3{
+        font-size: var(--font-lg);
+    }
+
+    .weather-info h4{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast h3{
+        font-size: var(--font-lg);
+    }
+
+    .day-forecast i{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast h4{
         font-size: var(--font-lg);
     }
 }
@@ -314,8 +427,9 @@ nav button{
         justify-content: space-between;
     }
 
+
     .todo{
-        width: 40%;
+        width: 45%;
     }
 
     .todo-heading{
@@ -324,6 +438,22 @@ nav button{
 
     .todo h2{
         font-size: var(--font-xl);
+    }
+
+    .weather{
+        width: 45%;
+    }
+
+    .day-forecast h3{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast i{
+        font-size: var(--font-2xl);
+    }
+
+    .day-forecast h4{
+        font-size: var(--font-lg);
     }
 }
 
@@ -374,7 +504,8 @@ nav button{
 
     .all-contents{
         display: flex;
-        gap: var(--gutter-xl);
+        gap: var(--gutter-3xl);
+        margin-left: 5rem;
         /* background-color: green; */
     }
 
@@ -405,6 +536,39 @@ nav button{
     .todo-task h2{
         font-size: var(--font-xl);
         width: 70%;
+    }
+
+    .weather{
+        width: 40%;
+        margin-right: 10rem;
+    }
+
+    .weather-info h2{
+        font-size: var(--font-2xl);
+    }
+
+    .weather-info h1{
+        font-size: var(--font-6xl);
+    }
+
+    .weather-info h3{
+        font-size: var(--font-lg);
+    }
+
+    .weather-info h4{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast h3{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast i{
+        font-size: var(--font-2xl);
+    }
+
+    .day-forecast h4{
+        font-size: var(--font-lg);
     }
 
 
@@ -488,5 +652,37 @@ nav button{
     .circle{
         height: 30px;
         width: 30px ;
+    }
+
+    .weather-info h2{
+        font-size: var(--font-3xl);
+    }
+
+    .weather-info h1{
+        font-size: var(--font-7xl);
+    }
+
+    .weather-info h3{
+        font-size: var(--font-xl);
+    }
+
+    .weather-info h4{
+        font-size: var(--font-xl);
+    }
+
+    .weather-info h4 span{
+        font-size: var(--font-xl);
+    }
+
+    .day-forecast h3{
+        font-size: var(--font-2xl);
+    }
+
+    .day-forecast i{
+        font-size: var(--font-3xl);
+    }
+
+    .day-forecast h4{
+        font-size: var(--font-xl);
     }
 }
