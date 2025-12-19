@@ -79,3 +79,107 @@ if(savedPrimary && savedSecondary && savedTernary && savedQuadrary){
     root.style.setProperty("--quadrary", savedQuadrary);
 }
 
+// Pomodoro Widget
+
+let shortBreakBtn = document.querySelector(".short-break");
+let focus = document.querySelector(".focus");
+let longBreakBtn = document.querySelector(".long-break");
+let play = document.querySelector(".play");
+let restart = document.querySelector(".restart");
+
+let pomodoro = document.querySelector(".pomo-center h1")
+
+let counter = 1500; // Default 25 minutes
+let timerInterval = null;
+let isRunning = false;
+
+// Function to format time in MM:SS format
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+// Function to update the display
+function updateDisplay() {
+    pomodoro.textContent = formatTime(counter);
+}
+
+// Initialize display
+updateDisplay();
+
+shortBreakBtn.addEventListener("click", ()=>{
+    counter = 300;
+    updateDisplay();
+    stopTimer();
+})
+
+longBreakBtn.addEventListener("click", ()=>{
+    counter = 900;
+    updateDisplay();
+    stopTimer();
+})
+
+focus.addEventListener("click", ()=>{
+    counter = 1500;
+    updateDisplay();
+    stopTimer();
+})
+
+// Function to start timer
+function startTimer() {
+    if (!isRunning && counter > 0) {
+        isRunning = true;
+        play.innerHTML = '<i class="ri-pause-line"></i>';
+        
+        timerInterval = setInterval(() => {
+            counter--;
+            updateDisplay();
+            
+            if (counter <= 0) {
+                stopTimer();
+                // Optional: Add notification or sound when timer ends
+                alert("Timer finished!");
+            }
+        }, 1000);
+    }
+}
+
+// Function to stop/pause timer
+function stopTimer() {
+    isRunning = false;
+    play.innerHTML = '<i class="ri-play-line"></i>';
+    
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+// Play/Pause button functionality
+play.addEventListener("click", () => {
+    if (isRunning) {
+        stopTimer();
+    } else {
+        startTimer();
+    }
+})
+
+// Restart button functionality
+restart.addEventListener("click", () => {
+    stopTimer();
+    // Reset to last selected time (default focus time if none selected)
+    const currentText = pomodoro.textContent;
+    if (currentText.startsWith("5:")) {
+        counter = 300; // Short break
+    } else if (currentText.startsWith("15:")) {
+        counter = 900; // Long break
+    } else {
+        counter = 1500; // Focus time
+    }
+    updateDisplay();
+})
+
+
+
+
