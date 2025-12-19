@@ -253,6 +253,28 @@ nav button{
     margin-bottom: var(--gutter-sm);
 }
 
+.weather-info input{
+    margin-left: var(--gutter-sm);
+    padding: var(--padding-sm);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--secondary);
+    background-color: var(--primary);
+    color: var(--quadrary);
+    margin-bottom: var(--padding-md);
+    text-align: center;
+}
+
+.weather-info input::placeholder{
+    color: var(--quadrary);
+    font-family: normal;
+    font-size: var(--font-md);
+}
+
+.weather-info input:focus{
+    outline: none;
+    border: 1px solid var(--ternary);
+}
+
 .temp-high-low{
     display: flex;
     gap: var(--gutter-md);
@@ -559,6 +581,16 @@ nav button{
         font-size: var(--font-xl);
     }
 
+    .weather-info input{
+        font-size: var(--font-lg);
+        border-radius: var(--border-radius-md);
+        margin-bottom: var(--padding-sm);
+    }
+
+    .week-forecast{
+        gap: var(--gutter-sm);
+    }
+
     .day-forecast h3{
         font-size: var(--font-xl);
     }
@@ -672,6 +704,16 @@ nav button{
 
     .weather-info h4 span{
         font-size: var(--font-xl);
+    }
+
+    .weather-info input{
+        font-size: var(--font-xl);
+        border-radius: var(--border-radius-md);
+        margin-bottom: var(--padding-md);
+    }
+
+    .week-forecast{
+        gap: var(--gutter-sm);
     }
 
     .day-forecast h3{
