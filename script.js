@@ -189,7 +189,107 @@ let fetchQuote = async () => {
   let quoteAuthor = document.querySelector(".quote-author");
 
   quoteContent.textContent = response.content;
-  quoteAuthor.textContent = '-' + response.author
+  quoteAuthor.textContent = "-" + response.author;
 };
 
 fetchQuote();
+
+// Todo List widget
+
+let taskInput = document.querySelector(".task-input input");
+let todo = document.querySelector(".todo");
+
+// Array to store todos
+let todos = [];
+
+// Load todos from localStorage on page load
+function loadTodos() {
+  const savedTodos = localStorage.getItem("todos");
+  if (savedTodos) {
+    todos = JSON.parse(savedTodos);
+    displayTodos();
+  }
+}
+
+// Save todos to localStorage
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// Display all todos on the page
+function displayTodos() {
+  // Clear existing todos (except heading and input)
+  const existingTasks = todo.querySelectorAll(".todo-task");
+  existingTasks.forEach(task => task.remove());
+  
+  // Add each todo to the DOM
+  todos.forEach((todoText, index) => {
+    createTodoElement(todoText, index);
+  });
+}
+
+// Create a single todo element
+function createTodoElement(todoText, index) {
+  let todoTaskDiv = document.createElement("div");
+  todoTaskDiv.setAttribute("class", "todo-task");
+  todoTaskDiv.setAttribute("data-index", index);
+  let todoTaskH2 = document.createElement("h2");
+  let circleDiv = document.createElement("div");
+  circleDiv.setAttribute("class", "circle");
+  todoTaskDiv.append(todoTaskH2, circleDiv);
+  todo.append(todoTaskDiv);
+  todoTaskH2.textContent = todoText;
+}
+
+// Create new task
+taskInput.addEventListener("keydown", (evt) => {
+  if (evt.key == "Enter" && taskInput.value.trim() !== "") {
+    // Add to todos array
+    todos.push(taskInput.value.trim());
+    
+    // Save to localStorage
+    saveTodos();
+    
+    // Create and display the new todo
+    createTodoElement(taskInput.value.trim(), todos.length - 1);
+    
+    // Clear input
+    taskInput.value = "";
+  }
+});
+
+// Remove finished tasks using event delegation
+todo.addEventListener("click", (evt) => {
+  // Check if clicked element is a todo task or inside a todo task
+  let todoTask = evt.target.closest(".todo-task");
+
+  if (todoTask) {
+    console.log("Task clicked:", todoTask);
+
+    // Find the h2 and circle within this specific task
+    let taskH2 = todoTask.querySelector("h2");
+    let taskCircle = todoTask.querySelector(".circle");
+
+    if (taskH2 && taskCircle) {
+      taskH2.style.textDecoration = "line-through";
+      taskH2.style.color = "var(--secondary)";
+      taskCircle.style.backgroundColor = "var(--ternary)";
+    }
+
+    // Get the task index and remove from todos array
+    const taskIndex = parseInt(todoTask.getAttribute("data-index"));
+    if (!isNaN(taskIndex) && taskIndex >= 0 && taskIndex < todos.length) {
+      todos.splice(taskIndex, 1);
+      saveTodos();
+    }
+
+    setTimeout(() => {
+      todoTask.remove();
+      // Refresh the display to update indices
+      displayTodos();
+    }, 1000);
+  }
+});
+
+// Load todos when page loads
+loadTodos();

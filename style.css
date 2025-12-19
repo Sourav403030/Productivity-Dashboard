@@ -186,6 +186,30 @@ nav button{
     margin-bottom: var(--gutter-md);
 }
 
+.task-input input{
+    width: 80%;
+    margin-right: var(--gutter-xl);
+    margin-left: var(--gutter-sm);
+    padding: var(--padding-sm);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--secondary);
+    background-color: var(--primary);
+    color: var(--quadrary);
+    margin-bottom: var(--padding-md);
+    text-align: center;
+}
+
+.task-input input::placeholder{
+    color: var(--quadrary);
+    font-family: normal;
+    font-size: var(--font-md);
+}
+
+.task-input input:focus{
+    outline: none;
+    border: 1px solid var(--ternary);
+}
+
 .todo-task{
     display: flex;
     justify-content: space-between;
@@ -193,6 +217,7 @@ nav button{
     align-items: center;
     gap: var(--gutter-md);
     margin-bottom: var(--gutter-sm);
+    cursor: pointer;
 }
 
 .todo-task h2{
