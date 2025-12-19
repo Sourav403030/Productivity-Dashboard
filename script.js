@@ -293,3 +293,158 @@ todo.addEventListener("click", (evt) => {
 
 // Load todos when page loads
 loadTodos();
+
+// Weather Widget using WeatherAPI
+async function fetchWeatherByCity(cityName = "Kochi") {
+  try {
+    const apiKey = null;
+    // Use forecast endpoint to get 7-day weather forecast
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(cityName)}&days=7&aqi=no&alerts=no`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log('Weather Data:', data);
+    
+    // Update weather widget with data
+    updateWeatherWidget(data);
+    
+  } catch (error) {
+    console.error('Weather fetch error:', error);
+    showWeatherError(error.message);
+  }
+}
+
+// Function to update weather widget
+function updateWeatherWidget(data) {
+  const weatherInfo = document.querySelector('.weather-info');
+  
+  if (weatherInfo) {
+    // Update temperature
+    const tempElement = weatherInfo.querySelector('h1');
+    if (tempElement) {
+      tempElement.textContent = `${Math.round(data.current.temp_c)}°C`;
+    }
+    
+    // Update location
+    const locationElement = weatherInfo.querySelector('h2');
+    if (locationElement) {
+      locationElement.textContent = `${data.location.name}, ${data.location.country}`;
+    }
+    
+    // Update weather description
+    const descElement = weatherInfo.querySelector('h3');
+    if (descElement) {
+      descElement.textContent = data.current.condition.text;
+    }
+    
+    // Update feels like temperature
+    const feelsLikeElement = weatherInfo.querySelector('h4');
+    if (feelsLikeElement) {
+      feelsLikeElement.innerHTML = `Feels like <span>${Math.round(data.current.feelslike_c)}°C</span>`;
+    }
+    
+    // Update high/low temperatures for today
+    const tempHighLowContainer = weatherInfo.querySelector('.temp-high-low');
+    if (tempHighLowContainer && data.forecast && data.forecast.forecastday[0]) {
+      const dayData = data.forecast.forecastday[0].day;
+      const highTempElement = tempHighLowContainer.querySelector('h4:first-child');
+      const lowTempElement = tempHighLowContainer.querySelector('h4:last-child');
+      
+      if (highTempElement) {
+        highTempElement.innerHTML = `High <span>${Math.round(dayData.maxtemp_c)}°C</span>`;
+      }
+      
+      if (lowTempElement) {
+        lowTempElement.innerHTML = `Low <span>${Math.round(dayData.mintemp_c)}°C</span>`;
+      }
+    }
+    
+    // Update 7-day forecast
+    updateWeekForecast(data.forecast);
+  }
+}
+
+// Function to update 7-day weather forecast
+function updateWeekForecast(forecastData) {
+  const weekForecastContainer = document.querySelector('.week-forecast');
+  
+  if (weekForecastContainer && forecastData && forecastData.forecastday) {
+    // Clear existing forecast
+    weekForecastContainer.innerHTML = '';
+    
+    forecastData.forecastday.forEach((day, index) => {
+      const date = new Date(day.date);
+      const dayName = index === 0 ? 'Today' : date.toLocaleDateString('en-US', { weekday: 'short' });
+      
+      // Get weather icon class based on condition
+      const weatherIconClass = getWeatherIconClass(day.day.condition.text);
+      
+      // Create forecast day element
+      const forecastDay = document.createElement('div');
+      forecastDay.className = 'day-forecast';
+      
+      forecastDay.innerHTML = `
+        <h3>${dayName}</h3>
+        <i class="${weatherIconClass}"></i>
+        <h4>${Math.round(day.day.mintemp_c)}℃ / ${Math.round(day.day.maxtemp_c)}℃</h4>
+      `;
+      
+      weekForecastContainer.appendChild(forecastDay);
+    });
+  }
+}
+
+// Function to map weather conditions to RemixIcon classes
+function getWeatherIconClass(condition) {
+  const conditionLower = condition.toLowerCase();
+  
+  if (conditionLower.includes('sunny') || conditionLower.includes('clear')) {
+    return 'ri-sun-line';
+  } else if (conditionLower.includes('partly cloudy') || conditionLower.includes('partly')) {
+    return 'ri-sun-cloudy-line';
+  } else if (conditionLower.includes('cloudy') || conditionLower.includes('overcast')) {
+    return 'ri-cloudy-line';
+  } else if (conditionLower.includes('rain') || conditionLower.includes('drizzle') || conditionLower.includes('shower')) {
+    return 'ri-rainy-line';
+  } else if (conditionLower.includes('snow') || conditionLower.includes('blizzard')) {
+    return 'ri-snowy-line';
+  } else if (conditionLower.includes('thunderstorm') || conditionLower.includes('thunder')) {
+    return 'ri-thunderstorms-line';
+  } else if (conditionLower.includes('fog') || conditionLower.includes('mist')) {
+    return 'ri-mist-line';
+  } else {
+    return 'ri-cloudy-line'; // Default icon
+  }
+}
+
+// Function to show weather error
+function showWeatherError(errorMessage) {
+  const weatherInfo = document.querySelector('.weather-info');
+  if (weatherInfo) {
+    const errorElement = weatherInfo.querySelector('h3') || weatherInfo.querySelector('h2');
+    if (errorElement) {
+      errorElement.textContent = `Error: ${errorMessage}`;
+      errorElement.style.color = 'var(--ternary)';
+    }
+  }
+}
+
+// Add city search functionality
+function setupCitySearch() {
+  const cityInput = document.querySelector('.weather-info input');
+  if (cityInput) {
+    cityInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && cityInput.value.trim()) {
+        fetchWeatherByCity(cityInput.value.trim());
+        cityInput.value = '';
+      }
+    });
+  }
+}
+
+// Initialize weather widget
+fetchWeatherByCity("Kochi"); // Default city
+setupCitySearch();

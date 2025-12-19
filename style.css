@@ -275,7 +275,7 @@ nav button{
     font-family: normal;
     font-size: var(--font-lg);
     color: var(--ternary);
-    margin-bottom: var(--gutter-sm);
+    margin-bottom: var (--gutter-sm);
 }
 
 .weather-info input{
@@ -300,6 +300,44 @@ nav button{
     border: 1px solid var(--ternary);
 }
 
+/* 7-Day Weather Forecast Styles */
+.week-forecast {
+    display: flex;
+    overflow-x: auto;
+}
+
+.day-forecast {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 60px;
+    flex-shrink: 0;
+    /* margin-bottom: -0.5rem; */
+}
+
+.day-forecast h3 {
+    font-family: normal;
+    font-size: var(--font-sm);
+    color: var(--ternary);
+    text-align: center;
+}
+
+.day-forecast i {
+    font-size: var(--font-sm);
+    color: var(--ternary);
+}
+
+.day-forecast h4 {
+    font-family: normal;
+    font-size: var(--font-sm);
+    color: var(--quadrary);
+    text-align: center;
+}
+
+.forecast-icon img {
+    filter: brightness(1.2);
+}
+
 .temp-high-low{
     display: flex;
     gap: var(--gutter-md);
@@ -317,7 +355,6 @@ nav button{
     justify-content: center;
     gap: var(--gutter-md);
     margin-top: var(--padding-md);
-    text-align: center;
 }
 
 .day-forecast{
